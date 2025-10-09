@@ -48,7 +48,22 @@ authRouter.post("/register", [
 
 
 // Login 
-authRouter.post("/login", (req, res) => {
+authRouter.post("/login", [
+    // validate email
+    body('email')
+    .isEmail().withMessage("Please enter a alid email")
+    .custom(value => {
+        return User.findOne({email: value}).then(foundUser => {
+            if (!foundUser){\
+                
+            }
+        })
+    })
+]
+    
+    
+    (req, res) => {
+    
     res.send("login ejecutado")
 })
 
